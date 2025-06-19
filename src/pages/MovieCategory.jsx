@@ -37,6 +37,7 @@ function MovieCategory({ category }) {
       })
    }
 
+   // 페이지 번호가 1번일때만 loading 실행함 -> 더보기 클릭시 로딩 컴포넌트가 렌더링되면서 위로 올라오는 현상 위로 올라오는 현상 방지
    if (loading && page[category] === 1) {
       return (
          <Wrap>
