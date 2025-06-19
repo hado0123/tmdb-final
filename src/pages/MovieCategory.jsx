@@ -37,7 +37,7 @@ function MovieCategory({ category }) {
       })
    }
 
-   if (loading) {
+   if (loading && page[category] === 1) {
       return (
          <Wrap>
             <Menu />
