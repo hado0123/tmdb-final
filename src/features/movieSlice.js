@@ -2,11 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getMovies } from '../api/tmdbApi'
 
 export const fetchMovies = createAsyncThunk('moives/fetchMovies', async ({ category, page }) => {
-   // category = 'upcoming', page = 1
-   console.log(category, page)
+   // category = 'popular', page = 2
    const response = await getMovies(category, page)
-
-   console.log(response)
    return response.data.results // 배열데이터
 })
 

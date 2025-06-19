@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 import { fetchMovies } from '../features/movieSlice'
 
 function MovieCategory({ category }) {
+   console.log(category)
    const dispatch = useDispatch()
    const { movies, loading, error } = useSelector((state) => state.movies)
 
