@@ -26,7 +26,15 @@ const movieSlice = createSlice({
          })
          .addCase(fetchMovies.fulfilled, (state, action) => {
             state.loading = false
-            state.movies = action.payload
+
+            // action.meta.arg에서는 fetch 함수에서 매개변수로 받아온 값을 가져올 수 있음
+            // 페이지가 1페이지 일때는 새로운 state로 업데이트
+            if (action.meta.arg.page === 1) {
+               state.movies = action.payload
+            } else {
+               // 페이지가 2페이지 이상일때는 기존 데이터 + 새로운 데이터 state로 업데이트
+               state.movies = [...state.movies, ...action.payload]
+            }
          })
          .addCase(fetchMovies.rejected, (state, action) => {
             state.loading = false

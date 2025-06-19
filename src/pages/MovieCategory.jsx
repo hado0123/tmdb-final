@@ -29,7 +29,12 @@ function MovieCategory({ category }) {
    // 더보기 버튼 클릭시
    const loadMore = () => {
       // 내가 현재 들어와있는 카테고리의 page번호를 1씩 증가시킴
-      setPage()
+      setPage((prevState) => {
+         return {
+            ...prevState,
+            [category]: prevState[category] + 1,
+         }
+      })
    }
 
    if (loading) {
