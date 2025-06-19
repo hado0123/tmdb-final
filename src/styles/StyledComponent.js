@@ -16,6 +16,13 @@ export const Input = styled.input``
 
 export const Button = styled.button``
 
-export const Loading = styled.div``
+export const Loading = styled.div`
+   width: 100%;
+   height: 400px;
+   background-image: url(/images/loading.gif);
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: 50px auto;
+`
 
 export const MarginDiv = styled.div``
