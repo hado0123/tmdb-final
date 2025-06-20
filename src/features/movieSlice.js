@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getMovies, getMovieDetails } from '../api/tmdbApi'
+import { getMovies, getMovieDetails, getMovieCredits } from '../api/tmdbApi'
 
 export const fetchMovies = createAsyncThunk('moives/fetchMovies', async ({ category, page }) => {
    // category = 'popular', page = 2
@@ -9,6 +9,12 @@ export const fetchMovies = createAsyncThunk('moives/fetchMovies', async ({ categ
 
 export const fetchMovieDetails = createAsyncThunk('moives/fetchMovieDetails', async (movieId) => {
    const response = await getMovieDetails(movieId)
+   return response.data // JSON 객체 데이터
+})
+
+export const fetchMovieCredits = createAsyncThunk('moives/fetchMovieCredits', async (movieId) => {
+   const response = await getMovieCredits(movieId)
+   console.log(response.data)
    return response.data
 })
 
@@ -17,6 +23,7 @@ const movieSlice = createSlice({
    initialState: {
       movies: [], // 현재상영 or 개봉예정 or 인기영화 목록
       movieDetails: null, // 영화 상세 정보
+      movieCredits: null, // 배우정보
       loading: false, // 로딩여부
       error: null, // 에러메세지
    },
@@ -52,6 +59,18 @@ const movieSlice = createSlice({
             state.movieDetails = action.payload
          })
          .addCase(fetchMovieDetails.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.error.message
+         })
+         .addCase(fetchMovieCredits.pending, (state) => {
+            state.loading = true
+            state.error = null
+         })
+         .addCase(fetchMovieCredits.fulfilled, (state, action) => {
+            state.loading = false
+            state.movieCredits = action.payload
+         })
+         .addCase(fetchMovieCredits.rejected, (state, action) => {
             state.loading = false
             state.error = action.error.message
          })

@@ -35,4 +35,16 @@ export const getMovieDetails = async (movieId) => {
    return response
 }
 
+// 영화 출연배우 불러오기
+export const getMovieCredits = async (movieId) => {
+   // https://api.themoviedb.org/3/movie/1233413/credits?language=ko-KR
+   const response = await tmdbApi.get(`/movie/${movieId}/credits`, {
+      params: {
+         language: 'ko-KR',
+      },
+   })
+
+   return response
+}
+
 export default tmdbApi
