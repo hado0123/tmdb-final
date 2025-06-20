@@ -2,12 +2,15 @@
 import { Wrap, Main } from '../styles/StyledComponent'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
+import Banner from '../components/Banner'
 
 function Home() {
    return (
       <Wrap>
          <Menu />
-         <Main>메인페이지</Main>
+         <Main>
+            <Banner />
+         </Main>
          <Footer />
       </Wrap>
    )

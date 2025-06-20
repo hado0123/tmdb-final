@@ -47,4 +47,23 @@ export const getMovieCredits = async (movieId) => {
    return response
 }
 
+// 영화 검색 결과 불러오기
+export const searchMovie = async (query, page = 1) => {
+   // query = '안녕', page = 1
+
+   // https://api.themoviedb.org/3/search/movie?query=안녕&include_adult=false&language=ko-KR&page=1&region=KR
+
+   const response = await tmdbApi.get('/search/movie', {
+      params: {
+         query,
+         page,
+         language: 'ko-KR',
+         include_adult: false,
+         region: 'KR',
+      },
+   })
+
+   return response
+}
+
 export default tmdbApi

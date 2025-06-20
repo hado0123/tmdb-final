@@ -1,0 +1,28 @@
+.banner {
+   width: 100%;
+   height: 400px;
+   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url(/images/banner.jpg);
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.search {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+
+.search .search_form {
+   width: 800px;
+   max-width: 100%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+}
+
+.search .header_msg {
+   color: white;
+}
