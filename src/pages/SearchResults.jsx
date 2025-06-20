@@ -20,7 +20,7 @@ function SearchResults() {
 
    useEffect(() => {
       dispath(fetchSearchResults({ query, page }))
-   }, [dispath, page])
+   }, [dispath, page, query])
 
    // 더보기 누르면 page 1씩 증가
    const loadMore = () => {
@@ -55,18 +55,25 @@ function SearchResults() {
       <Wrap>
          <Menu />
          <Main $padding="30px 0">
-            <MovieCard movies={searchResults} />
-            <Button
-               variant="outlined"
-               sx={{
-                  margin: '20px auto',
-                  display: 'block',
-                  width: '500px',
-               }}
-               onClick={loadMore}
-            >
-               더 보기
-            </Button>
+            {/* 검색결과가 없을 경우를 대비 */}
+            {searchResults.length > 0 ? (
+               <>
+                  <MovieCard movies={searchResults} />
+                  <Button
+                     variant="outlined"
+                     sx={{
+                        margin: '20px auto',
+                        display: 'block',
+                        width: '500px',
+                     }}
+                     onClick={loadMore}
+                  >
+                     더 보기
+                  </Button>
+               </>
+            ) : (
+               <h2>검색결과가 없습니다</h2>
+            )}
          </Main>
          <Footer />
       </Wrap>
