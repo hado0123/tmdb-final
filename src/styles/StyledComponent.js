@@ -25,4 +25,7 @@ export const Loading = styled.div`
    background-size: 50px auto;
 `
 
-export const MarginDiv = styled.div``
+export const MarginDiv = styled.div`
+   margin-top: ${(props) => props.$marginTop || '40px'};
+   margin-bottom: ${(props) => props.$marginBottom || '40px'};
+`

@@ -24,4 +24,15 @@ export const getMovies = async (category = 'popular', page = 1) => {
    return response
 }
 
+// 영화 상세정보 불러오기
+export const getMovieDetails = async (movieId) => {
+   const response = await tmdbApi.get(`/movie/${movieId}`, {
+      params: {
+         language: 'ko-KR',
+      },
+   })
+
+   return response
+}
+
 export default tmdbApi
