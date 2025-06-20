@@ -3,19 +3,23 @@ import { Wrap, Main, Loading } from '../styles/StyledComponent'
 import Menu from '../components/Menu'
 import Footer from '../components/Footer'
 import Button from '@mui/material/Button'
+import MovieCard from '../components/MovieCard'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { fetchSearchResults } from '../features/movieSlice'
-import MovieCard from '../components/MovieCard'
+import { useSearchParams } from 'react-router-dom'
 
 function SearchResults() {
+   const [searchParams] = useSearchParams() // query 파라메터 값 가져옴
+   const query = searchParams.get('query') // 검색어
+
    const [page, setPage] = useState(1) // 페이지 번호
    const dispath = useDispatch()
    const { searchResults, loading, error } = useSelector((state) => state.movies)
 
    useEffect(() => {
-      dispath(fetchSearchResults({ query: '안녕', page }))
+      dispath(fetchSearchResults({ query, page }))
    }, [dispath, page])
 
    // 더보기 누르면 page 1씩 증가
